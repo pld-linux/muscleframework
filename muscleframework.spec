@@ -14,6 +14,7 @@ URL:		http://www.musclecard.com/musclecard/index.html
 BuildRequires:	openssl-devel
 BuildRequires:	pcsc-lite-devel >= 1.1.1
 BuildRequires:	qt-devel
+BuildRequires:	pam-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -52,6 +53,7 @@ Summary(pl):	Modu³ PAM dla szkieletu MuscleCard
 Group:		Applications/System
 Requires:	pam
 Requires:	pcsc-lite
+Requires:	%{name} = %{version}
 Obsoletes:	pam_musclecard
 
 %description -n pam-pam_musclecard
