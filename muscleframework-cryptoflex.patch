@@ -1,0 +1,12 @@
+--- muscleframework-1.1.3/CFlexPlugin/src/slbCryptoflex.bundle/Contents/Info.plist.orig	Thu Sep 26 19:35:31 2002
++++ muscleframework-1.1.3/CFlexPlugin/src/slbCryptoflex.bundle/Contents/Info.plist	Sat Mar 15 13:07:52 2003
+@@ -18,7 +18,8 @@
+         <string>SchlumbergerSema</string>
+         <key>spProductName</key>
+         <string>SchlumbergerSema Cryptoflex</string>
+-        <key>spAtrValue</key> 
++	<key>spAtrValue</key>
++	<string>3B951540FF6801020204</string>
+         <string>3B951840FF6201010103</string>
+         <string>3B959440FF6301010201</string>
+         <key>DefaultApplication</key>
