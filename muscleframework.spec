@@ -11,7 +11,7 @@ Source0:	http://www.musclecard.com/musclecard/files/%{name}-%{version}.tar.gz
 Patch0:		%{name}-qt3.patch
 Patch1:		%{name}-cryptoflex.patch
 URL:		http://www.musclecard.com/musclecard/index.html
-BuildRequires:	openssl-devel
+BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	pam-devel
 BuildRequires:	pcsc-lite-devel >= 1.1.1
 BuildRequires:	qt-devel
