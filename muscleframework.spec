@@ -6,6 +6,7 @@ Release:	1
 License:	BSD
 Group:		Applications
 Source0:	http://www.musclecard.com/musclecard/files/%{name}-%{version}.tar.gz
+# Source0-md5:	def0af167d56e3c6181edb626e6e34d7
 Patch0:		%{name}-qt3.patch
 Patch1:		%{name}-cryptoflex.patch
 URL:		http://www.musclecard.com/musclecard/index.html
