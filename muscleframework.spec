@@ -182,6 +182,9 @@ install XCardII/man/xcard.1 $RPM_BUILD_ROOT%{_mandir}/man1
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post	pkcs11 -p /sbin/ldconfig
+%postun	pkcs11 -p /sbin/ldconfig
+
 %files -n pcsc-service-cryptoflex
 %defattr(644,root,root,755)
 %doc CFlexPlugin/{AUTHORS,COPYING,ChangeLog,NEWS,README}
