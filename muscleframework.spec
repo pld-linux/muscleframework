@@ -2,7 +2,8 @@ Summary:	MuscleCard PKCS#11 Framework
 Summary(pl):	Szkielet MuscleCard PKCS#11
 Name:		muscleframework
 Version:	1.1.3
-Release:	1
+Release:	2
+Epoch:		1
 License:	BSD
 Group:		Applications
 Source0:	http://www.musclecard.com/musclecard/files/%{name}-%{version}.tar.gz
@@ -45,17 +46,18 @@ MuscleCard Applet Plugin.
 %description -n pcsc-service-musclecard -l pl
 Wtyczka MuscleCard Applet.
 
-%package -n pam_musclecard
+%package -n pam-pam_musclecard
 Summary:	PAM module for MuscleCard Framework
 Summary(pl):	Modu³ PAM dla szkieletu MuscleCard
-Group:		Base
+Group:		Applications/System
 Requires:	pam
 Requires:	pcsc-lite
+Obsoletes:	pam_musclecard
 
-%description -n pam_musclecard
+%description -n pam-pam_musclecard
 PAM module for MuscleCard Framework.
 
-%description -n pam_musclecard -l pl
+%description -n pam-pam_musclecard -l pl
 Modu³ PAM dla szkieletu MuscleCard.
 
 %package tools
@@ -206,7 +208,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pcsc/services/mscMuscleCard.bundle/Contents/PkgInfo
 %{_libdir}/pcsc/services/mscMuscleCard.bundle/Contents/Resources
 
-%files -n pam_musclecard
+%files -n pam-pam_musclecard
 %defattr(644,root,root,755)
 %doc MusclePAM/{LICENSE,README}
 %attr(755,root,root) /lib/security/pam_musclecard.so
