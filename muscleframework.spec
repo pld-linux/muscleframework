@@ -90,7 +90,7 @@ Biblioteka PKCS#11.
 Summary:	PKCS#11 library header files
 Summary(pl):	Pliki nag³ówkowe biblioteki PKCS#11
 Group:		Development/Libraries
-Requires:	%{name}-pkcs11 = %{version}
+Requires:	%{name}-pkcs11 = %{version}-%{release}
 
 %description pkcs11-devel
 PKCS#11 library header files.
@@ -102,7 +102,7 @@ Pliki nag³ówkowe biblioteki PKCS#11.
 Summary:	PKCS#11 static library
 Summary(pl):	Statyczna biblioteka PKCS#11
 Group:		Development/Libraries
-Requires:	%{name}-pkcs11-devel = %{version}
+Requires:	%{name}-pkcs11-devel = %{version}-%{release}
 
 %description pkcs11-static
 PKCS#11 static library.
@@ -169,8 +169,8 @@ install -d $RPM_BUILD_ROOT%{_libdir}/pcsc/services/mscMuscleCard.bundle/Contents
 install MCardPlugin/src/.libs/libmusclecardApplet.so \
 	$RPM_BUILD_ROOT%{_libdir}/pcsc/services/mscMuscleCard.bundle/Contents/Linux/mscMuscleCard
 
-install -d $RPM_BUILD_ROOT{/lib/security,%{_sysconfdir}}
-install MusclePAM/pam_musclecard.so $RPM_BUILD_ROOT/lib/security
+install -d $RPM_BUILD_ROOT{/%{_lib}/security,%{_sysconfdir}}
+install MusclePAM/pam_musclecard.so $RPM_BUILD_ROOT/%{_lib}/security
 install MusclePAM/pam-muscle.conf $RPM_BUILD_ROOT%{_sysconfdir}
 
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1}
@@ -212,7 +212,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n pam-pam_musclecard
 %defattr(644,root,root,755)
 %doc MusclePAM/{LICENSE,README}
-%attr(755,root,root) /lib/security/pam_musclecard.so
+%attr(755,root,root) /%{_lib}/security/pam_musclecard.so
 %attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/pam-muscle.conf
 
 %files tools
