@@ -213,7 +213,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc MusclePAM/{LICENSE,README}
 %attr(755,root,root) /%{_lib}/security/pam_musclecard.so
-%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/pam-muscle.conf
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/pam-muscle.conf
 
 %files tools
 %defattr(644,root,root,755)
