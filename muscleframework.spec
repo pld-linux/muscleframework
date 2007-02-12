@@ -1,5 +1,5 @@
 Summary:	MuscleCard PKCS#11 Framework
-Summary(pl):	Szkielet MuscleCard PKCS#11
+Summary(pl.UTF-8):   Szkielet MuscleCard PKCS#11
 Name:		muscleframework
 Version:	1.1.3
 Release:	2
@@ -20,36 +20,36 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 MuscleCard PKCS#11 Framework.
 
-%description -l pl
+%description -l pl.UTF-8
 Szkielet MuscleCard PKCS#11.
 
 %package -n pcsc-service-cryptoflex
 Summary:	MuscleCard Cryptoflex Plugin
-Summary(pl):	Wtyczka MuscleCard Cryptoflex
+Summary(pl.UTF-8):   Wtyczka MuscleCard Cryptoflex
 Group:		Libraries
 Requires:	pcsc-lite
 
 %description -n pcsc-service-cryptoflex
 MuscleCard Cryptoflex Plugin.
 
-%description -n pcsc-service-cryptoflex -l pl
+%description -n pcsc-service-cryptoflex -l pl.UTF-8
 Wtyczka MuscleCard Cryptoflex.
 
 %package -n pcsc-service-musclecard
 Summary:	MuscleCard Applet Plugin
-Summary(pl):	Wtyczka MuscleCard Applet
+Summary(pl.UTF-8):   Wtyczka MuscleCard Applet
 Group:		Libraries
 Requires:	pcsc-lite
 
 %description -n pcsc-service-musclecard
 MuscleCard Applet Plugin.
 
-%description -n pcsc-service-musclecard -l pl
+%description -n pcsc-service-musclecard -l pl.UTF-8
 Wtyczka MuscleCard Applet.
 
 %package -n pam-pam_musclecard
 Summary:	PAM module for MuscleCard Framework
-Summary(pl):	Modu³ PAM dla szkieletu MuscleCard
+Summary(pl.UTF-8):   ModuÅ‚ PAM dla szkieletu MuscleCard
 Group:		Applications/System
 Requires:	pam
 Requires:	pcsc-lite
@@ -58,12 +58,12 @@ Obsoletes:	pam_musclecard
 %description -n pam-pam_musclecard
 PAM module for MuscleCard Framework.
 
-%description -n pam-pam_musclecard -l pl
-Modu³ PAM dla szkieletu MuscleCard.
+%description -n pam-pam_musclecard -l pl.UTF-8
+ModuÅ‚ PAM dla szkieletu MuscleCard.
 
 %package tools
 Summary:	MuscleTool - personalization tool for smartcards
-Summary(pl):	MuscleTool - narzêdzie do personalizacji kart procesorowych
+Summary(pl.UTF-8):   MuscleTool - narzÄ™dzie do personalizacji kart procesorowych
 Group:		Applications
 Requires:	pcsc-lite
 
@@ -71,56 +71,56 @@ Requires:	pcsc-lite
 MuscleTool - command line personalization tool for MuscleCard enabled
 smartcards.
 
-%description tools -l pl
-MuscleTool - dzia³aj±ce z linii poleceñ narzêdzie do personalizacji
-kart procesorowych obs³ugiwanych przez ¶rodowisko MuscleCard.
+%description tools -l pl.UTF-8
+MuscleTool - dziaÅ‚ajÄ…ce z linii poleceÅ„ narzÄ™dzie do personalizacji
+kart procesorowych obsÅ‚ugiwanych przez Å›rodowisko MuscleCard.
 
 %package pkcs11
 Summary:	PKCS#11 library
-Summary(pl):	Biblioteka PKCS#11
+Summary(pl.UTF-8):   Biblioteka PKCS#11
 Group:		Libraries
 
 %description pkcs11
 PKCS#11 library.
 
-%description pkcs11 -l pl
+%description pkcs11 -l pl.UTF-8
 Biblioteka PKCS#11.
 
 %package pkcs11-devel
 Summary:	PKCS#11 library header files
-Summary(pl):	Pliki nag³ówkowe biblioteki PKCS#11
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe biblioteki PKCS#11
 Group:		Development/Libraries
 Requires:	%{name}-pkcs11 = %{version}-%{release}
 
 %description pkcs11-devel
 PKCS#11 library header files.
 
-%description pkcs11-devel -l pl
-Pliki nag³ówkowe biblioteki PKCS#11.
+%description pkcs11-devel -l pl.UTF-8
+Pliki nagÅ‚Ã³wkowe biblioteki PKCS#11.
 
 %package pkcs11-static
 Summary:	PKCS#11 static library
-Summary(pl):	Statyczna biblioteka PKCS#11
+Summary(pl.UTF-8):   Statyczna biblioteka PKCS#11
 Group:		Development/Libraries
 Requires:	%{name}-pkcs11-devel = %{version}-%{release}
 
 %description pkcs11-static
 PKCS#11 static library.
 
-%description pkcs11-static -l pl
+%description pkcs11-static -l pl.UTF-8
 Statyczna biblioteka PKCS#11.
 
 %package xcard
 Summary:	XCardII - graphical smartcard administration tool
-Summary(pl):	XCardII - graficzne narzêdzie do administrowania kartami procesorowymi
+Summary(pl.UTF-8):   XCardII - graficzne narzÄ™dzie do administrowania kartami procesorowymi
 Group:		X11/Applications
 Requires:	pcsc-lite
 
 %description xcard
 XCardII - graphical smartcard administration tool.
 
-%description xcard -l pl
-XCardII - graficzne narzêdzie do administrowania kartami
+%description xcard -l pl.UTF-8
+XCardII - graficzne narzÄ™dzie do administrowania kartami
 procesorowymi.
 
 %prep
