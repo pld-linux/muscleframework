@@ -1,5 +1,5 @@
 Summary:	MuscleCard PKCS#11 Framework
-Summary(pl.UTF-8):   Szkielet MuscleCard PKCS#11
+Summary(pl.UTF-8):	Szkielet MuscleCard PKCS#11
 Name:		muscleframework
 Version:	1.1.3
 Release:	2
@@ -25,7 +25,7 @@ Szkielet MuscleCard PKCS#11.
 
 %package -n pcsc-service-cryptoflex
 Summary:	MuscleCard Cryptoflex Plugin
-Summary(pl.UTF-8):   Wtyczka MuscleCard Cryptoflex
+Summary(pl.UTF-8):	Wtyczka MuscleCard Cryptoflex
 Group:		Libraries
 Requires:	pcsc-lite
 
@@ -37,7 +37,7 @@ Wtyczka MuscleCard Cryptoflex.
 
 %package -n pcsc-service-musclecard
 Summary:	MuscleCard Applet Plugin
-Summary(pl.UTF-8):   Wtyczka MuscleCard Applet
+Summary(pl.UTF-8):	Wtyczka MuscleCard Applet
 Group:		Libraries
 Requires:	pcsc-lite
 
@@ -49,7 +49,7 @@ Wtyczka MuscleCard Applet.
 
 %package -n pam-pam_musclecard
 Summary:	PAM module for MuscleCard Framework
-Summary(pl.UTF-8):   Moduł PAM dla szkieletu MuscleCard
+Summary(pl.UTF-8):	Moduł PAM dla szkieletu MuscleCard
 Group:		Applications/System
 Requires:	pam
 Requires:	pcsc-lite
@@ -63,7 +63,7 @@ Moduł PAM dla szkieletu MuscleCard.
 
 %package tools
 Summary:	MuscleTool - personalization tool for smartcards
-Summary(pl.UTF-8):   MuscleTool - narzędzie do personalizacji kart procesorowych
+Summary(pl.UTF-8):	MuscleTool - narzędzie do personalizacji kart procesorowych
 Group:		Applications
 Requires:	pcsc-lite
 
@@ -77,7 +77,7 @@ kart procesorowych obsługiwanych przez środowisko MuscleCard.
 
 %package pkcs11
 Summary:	PKCS#11 library
-Summary(pl.UTF-8):   Biblioteka PKCS#11
+Summary(pl.UTF-8):	Biblioteka PKCS#11
 Group:		Libraries
 
 %description pkcs11
@@ -88,7 +88,7 @@ Biblioteka PKCS#11.
 
 %package pkcs11-devel
 Summary:	PKCS#11 library header files
-Summary(pl.UTF-8):   Pliki nagłówkowe biblioteki PKCS#11
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki PKCS#11
 Group:		Development/Libraries
 Requires:	%{name}-pkcs11 = %{version}-%{release}
 
@@ -100,7 +100,7 @@ Pliki nagłówkowe biblioteki PKCS#11.
 
 %package pkcs11-static
 Summary:	PKCS#11 static library
-Summary(pl.UTF-8):   Statyczna biblioteka PKCS#11
+Summary(pl.UTF-8):	Statyczna biblioteka PKCS#11
 Group:		Development/Libraries
 Requires:	%{name}-pkcs11-devel = %{version}-%{release}
 
@@ -112,7 +112,7 @@ Statyczna biblioteka PKCS#11.
 
 %package xcard
 Summary:	XCardII - graphical smartcard administration tool
-Summary(pl.UTF-8):   XCardII - graficzne narzędzie do administrowania kartami procesorowymi
+Summary(pl.UTF-8):	XCardII - graficzne narzędzie do administrowania kartami procesorowymi
 Group:		X11/Applications
 Requires:	pcsc-lite
 
