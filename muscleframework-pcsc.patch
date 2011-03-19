@@ -1,0 +1,26 @@
+--- muscleframework-1.1.7/CFlexPlugin/src/cryptoflex.c.orig	2009-06-24 13:22:26.000000000 +0200
++++ muscleframework-1.1.7/CFlexPlugin/src/cryptoflex.c	2011-03-19 11:47:27.369351770 +0100
+@@ -3001,8 +3001,10 @@
+     return MSC_TOKEN_REMOVED;
+   case SCARD_W_RESET_CARD:
+     return MSC_TOKEN_RESET;
++#ifdef SCARD_W_INSERTED_CARD
+   case SCARD_W_INSERTED_CARD:
+     return MSC_TOKEN_INSERTED;
++#endif
+   case SCARD_E_NO_SERVICE:
+     return MSC_SERVICE_UNRESPONSIVE;
+   case SCARD_E_UNKNOWN_CARD:
+--- muscleframework-1.1.7/MCardPlugin/src/musclecardApplet.c.orig	2008-05-31 18:24:34.000000000 +0200
++++ muscleframework-1.1.7/MCardPlugin/src/musclecardApplet.c	2011-03-19 12:04:27.669350932 +0100
+@@ -2185,8 +2185,10 @@
+     return MSC_TOKEN_REMOVED;
+   case SCARD_W_RESET_CARD:
+     return MSC_TOKEN_RESET;
++#ifdef SCARD_W_INSERTED_CARD
+   case SCARD_W_INSERTED_CARD:
+     return MSC_TOKEN_INSERTED;
++#endif
+   case SCARD_E_NO_SERVICE:
+     return MSC_SERVICE_UNRESPONSIVE;
+   case SCARD_E_UNKNOWN_CARD:

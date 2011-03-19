@@ -1,20 +1,23 @@
 Summary:	MuscleCard PKCS#11 Framework
 Summary(pl.UTF-8):	Szkielet MuscleCard PKCS#11
 Name:		muscleframework
-Version:	1.1.3
-Release:	2
+Version:	1.1.7
+Release:	1
 Epoch:		1
 License:	BSD
 Group:		Applications
-Source0:	http://www.musclecard.com/musclecard/files/%{name}-%{version}.tar.gz
-# Source0-md5:	def0af167d56e3c6181edb626e6e34d7
-Patch0:		%{name}-qt3.patch
-Patch1:		%{name}-cryptoflex.patch
+#Source0Download: https://alioth.debian.org/frs/?group_id=30111
+Source0:	https://alioth.debian.org/frs/download.php/3056/%{name}-%{version}.tar.gz
+# Source0-md5:	5dcce65c60d35d9dfa9e10cc7ce7f72e
+#Patch0:		%{name}-qt3.patch
+Patch0:		%{name}-cryptoflex.patch
+Patch1:		%{name}-pcsc.patch
+Patch2:		%{name}-openssl.patch
 URL:		http://www.musclecard.com/musclecard/index.html
-BuildRequires:	openssl-devel >= 0.9.7d
+BuildRequires:	libmusclecard-devel
+BuildRequires:	openssl-devel >= 1.0.0
 BuildRequires:	pam-devel
 BuildRequires:	pcsc-lite-devel >= 1.1.1
-BuildRequires:	qt-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -61,20 +64,6 @@ PAM module for MuscleCard Framework.
 %description -n pam-pam_musclecard -l pl.UTF-8
 Moduł PAM dla szkieletu MuscleCard.
 
-%package tools
-Summary:	MuscleTool - personalization tool for smartcards
-Summary(pl.UTF-8):	MuscleTool - narzędzie do personalizacji kart procesorowych
-Group:		Applications
-Requires:	pcsc-lite
-
-%description tools
-MuscleTool - command line personalization tool for MuscleCard enabled
-smartcards.
-
-%description tools -l pl.UTF-8
-MuscleTool - działające z linii poleceń narzędzie do personalizacji
-kart procesorowych obsługiwanych przez środowisko MuscleCard.
-
 %package pkcs11
 Summary:	PKCS#11 library
 Summary(pl.UTF-8):	Biblioteka PKCS#11
@@ -91,6 +80,8 @@ Summary:	PKCS#11 library header files
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki PKCS#11
 Group:		Development/Libraries
 Requires:	%{name}-pkcs11 = %{version}-%{release}
+Requires:	libmusclecard-devel
+Requires:	pcsc-lite-devel
 
 %description pkcs11-devel
 PKCS#11 library header files.
@@ -110,50 +101,32 @@ PKCS#11 static library.
 %description pkcs11-static -l pl.UTF-8
 Statyczna biblioteka PKCS#11.
 
-%package xcard
-Summary:	XCardII - graphical smartcard administration tool
-Summary(pl.UTF-8):	XCardII - graficzne narzędzie do administrowania kartami procesorowymi
-Group:		X11/Applications
-Requires:	pcsc-lite
-
-%description xcard
-XCardII - graphical smartcard administration tool.
-
-%description xcard -l pl.UTF-8
-XCardII - graficzne narzędzie do administrowania kartami
-procesorowymi.
-
 %prep
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
+
+ln README README.muscleframework
+find CFlexPlugin/src/slbCryptoflex.bundle -name '*.orig' | xargs %{__rm}
 
 %build
 cd CFlexPlugin
-%configure2_13
+%configure
 %{__make}
 
 cd ../MCardPlugin
-%configure2_13
+%configure
 %{__make}
 
 cd ../MusclePAM
 %{__make} \
 	CC="%{__cc} %{rpmcflags} -fPIC"
 
-cd ../MuscleTools
-%{__make} \
-	CC="%{__cc} %{rpmcflags}"
-
-cd ../PKCS11
-%configure2_13
+cd ../libmusclepkcs11
+%configure \
+	--includedir=%{_includedir}/libmusclepkcs11
 %{__make}
-
-cd ../XCardII/src
-%{__make} \
-	CPP="%{__cxx} %{rpmcflags} -fPIC -Wall -I/usr/X11R6/include/qt" \
-	LIBS="-L/usr/X11R6/lib -lqt -lpcsclite -lpthread" \
-	MOC=moc
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -173,15 +146,8 @@ install -d $RPM_BUILD_ROOT{/%{_lib}/security,%{_sysconfdir}}
 install MusclePAM/pam_musclecard.so $RPM_BUILD_ROOT/%{_lib}/security
 install MusclePAM/pam-muscle.conf $RPM_BUILD_ROOT%{_sysconfdir}
 
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1}
-install MuscleTools/muscleTool $RPM_BUILD_ROOT%{_bindir}
-install MuscleTools/man/muscleTool.1 $RPM_BUILD_ROOT%{_mandir}/man1
-
-%{__make} -C PKCS11 install \
+%{__make} -C libmusclepkcs11 install \
 	DESTDIR=$RPM_BUILD_ROOT
-
-install XCardII/src/xcard $RPM_BUILD_ROOT%{_bindir}
-install XCardII/man/xcard.1 $RPM_BUILD_ROOT%{_mandir}/man1
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -191,7 +157,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n pcsc-service-cryptoflex
 %defattr(644,root,root,755)
-%doc CFlexPlugin/{AUTHORS,COPYING,ChangeLog,NEWS,README}
+%doc CFlexPlugin/{AUTHORS,COPYING,ChangeLog,ChangeLog.svn,NEWS,README} README.muscleframework
 %dir %{_libdir}/pcsc/services/slbCryptoflex.bundle
 %dir %{_libdir}/pcsc/services/slbCryptoflex.bundle/Contents
 %{_libdir}/pcsc/services/slbCryptoflex.bundle/Contents/Info.plist
@@ -201,7 +167,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n pcsc-service-musclecard
 %defattr(644,root,root,755)
-%doc MCardPlugin/{AUTHORS,COPYING,ChangeLog,NEWS,README}
+%doc MCardPlugin/{AUTHORS,COPYING,ChangeLog,ChangeLog.svn,NEWS,README} README.muscleframework
 %dir %{_libdir}/pcsc/services/mscMuscleCard.bundle
 %dir %{_libdir}/pcsc/services/mscMuscleCard.bundle/Contents
 %{_libdir}/pcsc/services/mscMuscleCard.bundle/Contents/Info.plist
@@ -211,33 +177,22 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n pam-pam_musclecard
 %defattr(644,root,root,755)
-%doc MusclePAM/{LICENSE,README}
+%doc MusclePAM/{COPYING,ChangeLog.svn,README} README.muscleframework
 %attr(755,root,root) /%{_lib}/security/pam_musclecard.so
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/pam-muscle.conf
 
-%files tools
-%defattr(644,root,root,755)
-%doc MuscleTools/{COPYING,README}
-%attr(755,root,root) %{_bindir}/muscleTool
-%{_mandir}/man1/muscleTool.1*
-
 %files pkcs11
 %defattr(644,root,root,755)
-%doc PKCS11/{AUTHORS,COPYING,ChangeLog,NEWS,README}
-%attr(755,root,root) %{_libdir}/lib*.so.*.*
+%doc libmusclepkcs11/{AUTHORS,COPYING,ChangeLog,ChangeLog.svn,NEWS,README} README.muscleframework
+%attr(755,root,root) %{_libdir}/libmusclepkcs11.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libmusclepkcs11.so.0
 
 %files pkcs11-devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*.so
-%{_libdir}/lib*.la
-%{_includedir}/*.h
+%attr(755,root,root) %{_libdir}/libmusclepkcs11.so
+%{_libdir}/libmusclepkcs11.la
+%{_includedir}/libmusclepkcs11
 
 %files pkcs11-static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
-
-%files xcard
-%defattr(644,root,root,755)
-%doc XCardII/{COPYING,README}
-%attr(755,root,root) %{_bindir}/xcard
-%{_mandir}/man1/xcard.1*
+%{_libdir}/libmusclepkcs11.a
